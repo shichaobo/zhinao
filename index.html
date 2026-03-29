@@ -3,449 +3,1019 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智脑边界 | 探索人类大脑与大模型的边界</title>
-    <script src="https://image.uc.cn/s/uae/g/3n/mos-production/fontawesome-free-7.1.0-web/js/all.min.js"></script>
+    <title>智脑边界 | 探索人类大脑与大模型的融合前沿</title>
+    
+    <!-- 引入第三方库 -->
     <script src="https://image.uc.cn/s/uae/g/3n/mos-production/0915/3.4.17.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'deep-blue': '#0A192F',
-                        'cyber-teal': '#00D1B2',
-                        'mystic-purple': '#8A2BE2',
-                        'light-gray': '#CCCCCC',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://image.uc.cn/s/uae/g/3n/mos-production/fontawesome-free-7.1.0-web/js/all.min.js"></script>
+    <script src="https://image.uc.cn/s/uae/g/3n/mos-production/0915/echarts.min.js"></script>
+    
     <style>
-        /* 自定义CSS使用BEM命名法以防止冲突 */
-        .hero-gradient {
-            background: linear-gradient(135deg, #0A192F 0%, #1a2b4a 50%, #0A192F 100%);
-        }
-        .logo-concept {
-            border: 2px dashed #00D1B2;
-            background: rgba(0, 209, 178, 0.05);
-            border-radius: 20px;
-        }
-        .section-title {
+        /* 自定义CSS使用BEM命名法避免冲突 */
+        .custom-hero {
             position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            overflow: hidden;
+            min-height: 85vh;
         }
-        .section-title::after {
-            content: '';
+        
+        .custom-hero__background {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #00D1B2, #8A2BE2);
-            border-radius: 2px;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, rgba(11, 31, 61, 0.9) 0%, rgba(106, 13, 173, 0.7) 50%, rgba(0, 191, 255, 0.4) 100%);
         }
-        .book-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .custom-hero__title {
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+            line-height: 1.2;
         }
-        .book-card:hover {
+        
+        .custom-section {
+            scroll-margin-top: 80px;
+        }
+        
+        .custom-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .custom-timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+        }
+        
+        .custom-timeline__item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .custom-timeline__item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .custom-timeline__item--gold::before {
+            background-color: #f59e0b;
+        }
+        
+        .custom-timeline__item--purple::before {
+            background-color: #8b5cf6;
+        }
+        
+        .custom-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .custom-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
         }
-        .tech-keyword {
-            background: rgba(138, 43, 226, 0.1);
-            border-left: 4px solid #8A2BE2;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem 0;
+        
+        .custom-keyword {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-left: 3px solid #3b82f6;
+            padding: 8px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 5px;
         }
-        .pulse-glow {
-            animation: pulse-glow 2s infinite alternate;
+        
+        .custom-neuron {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #00ffff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: pulse 3s infinite;
         }
-        @keyframes pulse-glow {
-            from { box-shadow: 0 0 5px rgba(0, 209, 178, 0.5); }
-            to { box-shadow: 0 0 15px rgba(0, 209, 178, 0.8), 0 0 25px rgba(138, 43, 226, 0.4); }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        .custom-chip {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .custom-chip::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(0, 255, 255, 0.3), transparent);
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .custom-fusion {
+            background: linear-gradient(90deg, #0b1f3d 0%, #6a0dad 50%, #00bfff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .custom-hero {
+                min-height: 70vh;
+            }
+            
+            .custom-hero__title {
+                font-size: 2.5rem !important;
+            }
         }
     </style>
 <script>
-!(function(j,a,g){j.__itrace_conf = {bid: 'kt40h0wl-koyh4af8',rel: '', uid: 'a0d34bd3-c0c5-4a13-bc45-5750ac6036f9' ,  spa: true, plugins:['jserror','interface','perf','resource','flow','blank']};var b = a.createElement("script");var d = a.getElementsByTagName("script")[0];b.type = "text/javascript";b.crossorigin = true;b.async = true;b.onload = function(){j.__itrace && j.__itrace.setReady()};d.parentNode.insertBefore(b,d);b.src = g})(window, document, "https://g.alicdn.com/woodpeckerx/itrace-next/itrace.iife.js")
+!(function(j,a,g){j.__itrace_conf = {bid: 'kt40h0wl-koyh4af8',rel: '', uid: 'fe96cc13-b4f7-4c9a-a630-ddbf2cc954c9' ,  spa: true, plugins:['jserror','interface','perf','resource','flow','blank']};var b = a.createElement("script");var d = a.getElementsByTagName("script")[0];b.type = "text/javascript";b.crossorigin = true;b.async = true;b.onload = function(){j.__itrace && j.__itrace.setReady()};d.parentNode.insertBefore(b,d);b.src = g})(window, document, "https://g.alicdn.com/woodpeckerx/itrace-next/itrace.iife.js")
 </script>
 </head>
-<body class="bg-deep-blue text-white font-sans">
-    <!-- 头部导航 -->
-    <header class="sticky top-0 z-50 bg-deep-blue/95 backdrop-blur-sm border-b border-gray-800">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center space-x-3 mb-4 md:mb-0">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyber-teal to-mystic-purple flex items-center justify-center pulse-glow">
-                    <i class="fas fa-brain text-white"></i>
+<body class="bg-gray-900 text-gray-100">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-brain text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">智脑边界</span>
                 </div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-cyber-teal to-mystic-purple bg-clip-text text-transparent">智脑边界</h1>
+                
+                <!-- 导航链接 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#biological-intelligence" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">生物智源</a>
+                    <a href="#silicon-awakening" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">硅基觉醒</a>
+                    <a href="#dual-intelligence-symphony" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">双智交响</a>
+                    <a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors font-medium">关于我们</a>
+                    <a href="#" class="text-gray-300 hover:text-green-400 transition-colors font-medium">技术博客</a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
-            <nav class="flex flex-wrap justify-center gap-4 md:gap-8">
-                <a href="#brain-science" class="hover:text-cyber-teal transition-colors"><i class="fas fa-brain mr-2"></i>脑科学前沿</a>
-                <a href="#tech-news" class="hover:text-cyber-teal transition-colors"><i class="fas fa-robot mr-2"></i>科技新知</a>
-                <a href="#smart-life" class="hover:text-cyber-teal transition-colors"><i class="fas fa-lightbulb mr-2"></i>智慧生活</a>
-                <a href="#book-list" class="hover:text-cyber-teal transition-colors"><i class="fas fa-book mr-2"></i>智库书单</a>
-                <a href="#about" class="hover:text-cyber-teal transition-colors"><i class="fas fa-info-circle mr-2"></i>关于我们</a>
-            </nav>
+            
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-4">
+                <a href="#biological-intelligence" class="block text-gray-300 hover:text-blue-400 transition-colors font-medium py-2">生物智源</a>
+                <a href="#silicon-awakening" class="block text-gray-300 hover:text-purple-400 transition-colors font-medium py-2">硅基觉醒</a>
+                <a href="#dual-intelligence-symphony" class="block text-gray-300 hover:text-cyan-400 transition-colors font-medium py-2">双智交响</a>
+                <a href="#" class="block text-gray-300 hover:text-yellow-400 transition-colors font-medium py-2">关于我们</a>
+                <a href="#" class="block text-gray-300 hover:text-green-400 transition-colors font-medium py-2">技术博客</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <header class="custom-hero pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="custom-hero__background"></div>
+        
+        <!-- 神经元动画效果 -->
+        <div id="neuron-animation" class="absolute inset-0 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="custom-hero__title text-4xl md:text-6xl lg:text-7xl mb-6">
+                    <span class="block">探索<span class="text-blue-400">人类大脑</span>与</span>
+                    <span class="block"><span class="text-purple-400">大模型</span>的边界与融合</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
+                    一场关于生物智能与机器智能的深度对话，从神经元到Transformer，从意识之谜到伦理边界
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <span class="custom-keyword"><i class="fas fa-brain mr-2"></i>脑科学</span>
+                    <span class="custom-keyword"><i class="fas fa-microchip mr-2"></i>大模型</span>
+                    <span class="custom-keyword"><i class="fas fa-link mr-2"></i>脑机接口</span>
+                    <span class="custom-keyword"><i class="fas fa-robot mr-2"></i>具身智能</span>
+                    <span class="custom-keyword"><i class="fas fa-balance-scale mr-2"></i>AI伦理</span>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <a href="#biological-intelligence" class="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:-translate-y-1 shadow-lg">
+                        <i class="fas fa-dna mr-2"></i>探索生物智源
+                    </a>
+                    <a href="#silicon-awakening" class="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:-translate-y-1 shadow-lg">
+                        <i class="fas fa-server mr-2"></i>了解硅基觉醒
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 滚动指示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <a href="#biological-intelligence" class="text-gray-400 hover:text-white animate-bounce">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
         </div>
     </header>
 
-    <!-- Hero 区域 -->
-    <main class="min-h-screen">
-        <section class="hero-gradient py-20 md:py-32 px-4 text-center">
-            <div class="container mx-auto max-w-4xl">
-                <div class="logo-concept p-8 mb-10 inline-block">
-                    <div class="text-5xl md:text-7xl mb-6">
-                        <i class="fas fa-project-diagram text-cyber-teal"></i>
-                        <i class="fas fa-plus mx-4 text-light-gray"></i>
-                        <i class="fas fa-brain text-mystic-purple"></i>
+    <main>
+        <!-- 生物智源部分 -->
+        <section id="biological-intelligence" class="custom-section py-16 bg-gradient-to-b from-gray-900 to-blue-900/20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <!-- 章节标题 -->
+                    <div class="text-center mb-16">
+                        <div class="inline-flex items-center justify-center p-3 bg-blue-900/30 rounded-full mb-4">
+                            <i class="fas fa-brain text-3xl text-blue-400"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">生物智源 <span class="text-blue-400">(脑科学)</span></h2>
+                        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                            "从古希腊'神智在脑'到现代脑机接口，人类对自身心智的探索从未停歇。我们既是观察者，也是被观测的大脑本身。"
+                        </p>
                     </div>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6">探索人类大脑与大模型的边界</h2>
-                    <p class="text-xl text-light-gray mb-8 max-w-2xl mx-auto">
-                        连接神经科学、人工智能与认知提升的知识枢纽，聚焦智能本质与未来人机协同。
-                    </p>
-                    <a href="#brain-science" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyber-teal to-mystic-purple text-white font-semibold rounded-full hover:opacity-90 transition-opacity">
-                        <i class="fas fa-rocket mr-2"></i> 开始探索
-                    </a>
-                </div>
-
-                <!-- 视觉风格展示 -->
-                <div class="mt-16 bg-black/30 rounded-2xl p-6 border border-gray-700">
-                    <h3 class="text-2xl font-bold mb-4 text-cyber-teal"><i class="fas fa-palette mr-2"></i>视觉风格指南</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                        <!-- 左侧内容 -->
                         <div>
-                            <h4 class="font-semibold mb-2"><i class="fas fa-fill-drip mr-2"></i>色彩系统</h4>
-                            <p class="text-light-gray mb-3">采用<strong class="text-cyber-teal">深蓝(#0A192F)</strong>作为科技理性的基石，搭配<strong class="text-mystic-purple">青色(#00D1B2)或紫色(#8A2BE2)</strong>象征脑电波与神秘感，营造未来科技氛围。</p>
-                            <div class="flex space-x-2 mt-4">
-                                <div class="w-12 h-12 rounded bg-deep-blue"></div>
-                                <div class="w-12 h-12 rounded bg-cyber-teal"></div>
-                                <div class="w-12 h-12 rounded bg-mystic-purple"></div>
-                                <div class="w-12 h-12 rounded bg-white"></div>
+                            <div class="custom-timeline mb-10">
+                                <div class="custom-timeline__item">
+                                    <h3 class="text-xl font-bold text-blue-300 mb-2">古希腊思想源起</h3>
+                                    <p class="text-gray-300">
+                                        希波克拉底提出"神智在脑"，认为情绪与感知源于大脑；而亚里士多德却坚持"心主思维"，视脑为冷却血液的器官。
+                                    </p>
+                                </div>
+                                
+                                <div class="custom-timeline__item custom-timeline__item--gold">
+                                    <h3 class="text-xl font-bold text-yellow-300 mb-2">现代神经科学奠基</h3>
+                                    <p class="text-gray-300">
+                                        圣地亚哥·拉蒙-卡哈尔确立<strong class="text-blue-300">神经元学说</strong>，揭示神经系统由离散细胞构成，成为脑科学的基石。
+                                    </p>
+                                </div>
+                                
+                                <div class="custom-timeline__item custom-timeline__item--purple">
+                                    <h3 class="text-xl font-bold text-purple-300 mb-2">脑机接口新时代</h3>
+                                    <p class="text-gray-300">
+                                        Neuralink于2026年实现"意念发声"临床突破，渐冻症患者通过N1芯片说出完整句子，无声语言重建成为现实。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-blue-800/30">
+                                <h4 class="text-lg font-bold text-blue-300 mb-3 flex items-center">
+                                    <i class="fas fa-lightbulb mr-2"></i>赫布定律与突触可塑性
+                                </h4>
+                                <p class="text-gray-300 mb-4">
+                                    科学家发现<strong class="text-blue-300">突触可塑性</strong>——经验能重塑神经连接强度，这正是学习与记忆的生物学密码。
+                                </p>
+                                <div class="bg-blue-900/30 p-4 rounded-lg">
+                                    <p class="text-blue-200 italic text-center">
+                                        "一起放电的神经元连在一起"
+                                    </p>
+                                    <p class="text-gray-400 text-sm text-center mt-2">
+                                        这一原则后来发展为脉冲时序依赖可塑性（STDP），并在果蝇嗅觉训练中得到验证
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- 右侧图片 -->
+                        <div class="relative">
+                            <div class="custom-card bg-gray-800/40 p-2 rounded-2xl overflow-hidden">
+                                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                                    <img src="https://agent.qianwen.com/mos/3740f50fc36b4d8ea6670e582cfd6bac/ef91a687f1743924d89d28fe91267d73" 
+                                         alt="Neuralink脑机接口植入示意图：展示脑机接口芯片植入人脑的详细结构，包括电极阵列、处理器和无线传输模块" 
+                                         class="w-full h-full object-cover rounded-lg">
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center text-blue-400 mb-2">
+                                        <i class="fas fa-microchip mr-2"></i>
+                                        <span class="font-medium">Neuralink N1 芯片植入示意图</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        展示2026年实现"意念发声"的脑机接口技术，渐冻症患者可通过此技术重建语言能力。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 数据卡片 -->
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div class="bg-blue-900/30 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-blue-300">860亿</div>
+                                    <div class="text-gray-400 text-sm">人脑神经元数量</div>
+                                </div>
+                                <div class="bg-blue-900/30 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-blue-300">20瓦</div>
+                                    <div class="text-gray-400 text-sm">大脑平均功耗</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中国脑机接口进展 -->
+                    <div class="bg-gray-800/30 rounded-2xl p-6 mb-12 border border-blue-800/20">
+                        <h3 class="text-2xl font-bold text-blue-300 mb-6 flex items-center">
+                            <i class="fas fa-flag mr-3"></i>中国脑机接口临床进展
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-900/50 p-5 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                        <i class="fas fa-stethoscope text-blue-400"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white">博睿康</h4>
+                                </div>
+                                <p class="text-gray-300">
+                                    获批全球首个侵入式脑机接口医疗器械，标志着中国在该领域的领先地位。
+                                </p>
+                            </div>
+                            <div class="bg-gray-900/50 p-5 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center mr-3">
+                                        <i class="fas fa-tiger text-purple-400"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white">脑虎科技</h4>
+                                </div>
+                                <p class="text-gray-300">
+                                    完成54例植入，临床规模领先世界，尽管柔性电极仍面临脱出风险，但可拉伸材料正破解长期稳定性难题。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 硅基觉醒部分 -->
+        <section id="silicon-awakening" class="custom-section py-16 bg-gradient-to-b from-gray-900 to-purple-900/20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <!-- 章节标题 -->
+                    <div class="text-center mb-16">
+                        <div class="inline-flex items-center justify-center p-3 bg-purple-900/30 rounded-full mb-4">
+                            <i class="fas fa-microchip text-3xl text-purple-400"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">硅基觉醒 <span class="text-purple-400">(大模型)</span></h2>
+                        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                            "从图灵测试到Transformer，机器正以指数级速度逼近人类的语言与思维能力。这不是简单的模仿，而是一场全新的智能演化。"
+                        </p>
+                    </div>
+                    
+                    <!-- Transformer架构说明 -->
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-bold text-purple-300 mb-8 text-center">Transformer架构：AI的"超级图书馆管理员"</h3>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                            <!-- Query卡片 -->
+                            <div class="custom-card bg-gray-800/40 p-6 rounded-2xl">
+                                <div class="text-center mb-4">
+                                    <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-question-circle text-2xl text-purple-400"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-purple-300">Query</h4>
+                                    <div class="text-purple-400 text-sm mt-1">"我想找什么？"</div>
+                                </div>
+                                <p class="text-gray-300 text-center">
+                                    系统处理的问题或需求，负责向Key发出查询请求
+                                </p>
+                            </div>
+                            
+                            <!-- Key卡片 -->
+                            <div class="custom-card bg-gray-800/40 p-6 rounded-2xl">
+                                <div class="text-center mb-4">
+                                    <div class="w-16 h-16 rounded-full bg-blue-900/50 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-key text-2xl text-blue-400"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-blue-300">Key</h4>
+                                    <div class="text-blue-400 text-sm mt-1">"我能提供什么？"</div>
+                                </div>
+                                <p class="text-gray-300 text-center">
+                                    可供匹配的信息索引，用于与Query计算相似度
+                                </p>
+                            </div>
+                            
+                            <!-- Value卡片 -->
+                            <div class="custom-card bg-gray-800/40 p-6 rounded-2xl">
+                                <div class="text-center mb-4">
+                                    <div class="w-16 h-16 rounded-full bg-cyan-900/50 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-database text-2xl text-cyan-400"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-cyan-300">Value</h4>
+                                    <div class="text-cyan-400 text-sm mt-1">"我的具体内容是什么？"</div>
+                                </div>
+                                <p class="text-gray-300 text-center">
+                                    实际的信息内容，根据匹配权重参与最终输出
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800/40 p-6 rounded-2xl border border-purple-800/30">
+                            <p class="text-gray-300">
+                                <strong class="text-purple-300">自注意力机制</strong>让Transformer不再像传统RNN那样"逐本翻书"，而是戴上"注意力眼镜"，瞬间扫描所有书籍，精准锁定关键信息。系统计算Query与所有Key的匹配度，赋予高分Value更大权重，最终融合出富含上下文的新表示。
+                            </p>
+                            <div class="mt-4 text-purple-300">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                多头注意力如同多个侦探分工协作，分别关注语法、语义、指代关系，再综合决策。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- 左侧图片 -->
                         <div>
-                            <h4 class="font-semibold mb-2"><i class="fas fa-drafting-compass mr-2"></i>Logo设计概念</h4>
-                            <p class="text-light-gray">将<strong>人类大脑轮廓</strong>与<strong>集成电路板纹理</strong>融合，体现“智脑”意象。外形保持大脑结构，内部填充电路图样，并加入发光效果象征思维激活。</p>
-                            <div class="mt-4 flex justify-center">
-                                <img src="https://agent.qianwen.com/mos/78341a4670314a9cb986a5d8c0df7144/3e44ddbdc4e10a419d099313da28586c" alt="Logo概念示意图：大脑形状内含电路纹理，体现生物智能与数字智能融合" class="rounded-lg border border-cyber-teal">
+                            <div class="custom-card bg-gray-800/40 p-2 rounded-2xl overflow-hidden mb-8">
+                                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                                    <img src="https://agent.qianwen.com/mos/3740f50fc36b4d8ea6670e582cfd6bac/64680764bd213e9b4eff4d7e858810ce" 
+                                         alt="脑科学与人工智能融合路径示意图：展示生物神经网络与人工神经网络的结构对比和融合路径，包含注意力机制和Transformer架构的可视化" 
+                                         class="w-full h-full object-cover rounded-lg">
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center text-purple-400 mb-2">
+                                        <i class="fas fa-project-diagram mr-2"></i>
+                                        <span class="font-medium">脑科学-AI融合路径图</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        展示生物神经网络与Transformer架构的对比与融合可能性。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 2026年AI进展 -->
+                            <div class="bg-purple-900/30 p-5 rounded-xl">
+                                <h4 class="text-lg font-bold text-purple-300 mb-3 flex items-center">
+                                    <i class="fas fa-rocket mr-2"></i>2026年AI前沿进展
+                                </h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                        <span class="text-gray-300">LongCat-Next实现语音直连处理，延迟低于300ms</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                        <span class="text-gray-300">银河星脑驱动机器人完成盘核桃、叠衣等精细操作</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                        <span class="text-gray-300">Kairos 3.0-4B支持端侧推理，加速AI从数字走向空间智能</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 脑科学前沿 -->
-        <section id="brain-science" class="py-16 px-4 bg-slate-900">
-            <div class="container mx-auto">
-                <h2 class="section-title text-3xl font-bold mb-10"><i class="fas fa-brain mr-3 text-mystic-purple"></i>🧠 脑科学前沿</h2>
-                <p class="text-light-gray text-lg mb-10 max-w-3xl">介绍最新的神经科学研究，如脑机接口、记忆机制、意识研究等，追踪人类心智的运作边界。</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 卡片 1 -->
-                    <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-cyber-teal transition-colors">
-                        <div class="text-cyber-teal text-3xl mb-4"><i class="fas fa-link"></i></div>
-                        <h3 class="text-xl font-bold mb-3">脑机接口（BCI）突破</h3>
-                        <p class="text-light-gray mb-4">Neuralink等公司的临床试验进展，非侵入式EEG设备的家庭化应用，思维控制假肢与打字系统的发展现状。</p>
-                        <div class="tech-keyword">关键词：Neuralink, EEG, 思维控制</div>
-                    </div>
-                    <!-- 卡片 2 -->
-                    <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-mystic-purple transition-colors">
-                        <div class="text-mystic-purple text-3xl mb-4"><i class="fas fa-memory"></i></div>
-                        <h3 class="text-xl font-bold mb-3">记忆机制解析</h3>
-                        <p class="text-light-gray mb-4">海马体在记忆编码中的作用，记忆巩固与遗忘的分子机制，“记忆移植”实验在动物模型中的实现可能性。</p>
-                        <div class="tech-keyword">关键词：海马体, 记忆巩固, 突触修剪</div>
-                    </div>
-                    <!-- 卡片 3 -->
-                    <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-cyber-teal transition-colors">
-                        <div class="text-cyber-teal text-3xl mb-4"><i class="fas fa-eye"></i></div>
-                        <h3 class="text-xl font-bold mb-3">意识研究新视角</h3>
-                        <p class="text-light-gray mb-4">全局工作空间理论（GWT）、整合信息理论（IIT）、植物人状态下的意识检测技术，探讨主观体验的神经基础。</p>
-                        <div class="tech-keyword">关键词：意识理论, IIT, 全局工作空间</div>
-                    </div>
-                </div>
-                <div class="mt-10 text-center text-light-gray">
-                    <i class="fas fa-sync-alt mr-2"></i>更新频率：每月至少2篇深度解读，附权威期刊引用。
-                </div>
-            </div>
-        </section>
-
-        <!-- 科技新知 -->
-        <section id="tech-news" class="py-16 px-4 bg-slate-800">
-            <div class="container mx-auto">
-                <h2 class="section-title text-3xl font-bold mb-10"><i class="fas fa-robot mr-3 text-cyber-teal"></i>🤖 科技新知</h2>
-                <p class="text-light-gray text-lg mb-10 max-w-3xl">涵盖AI大模型、量子计算、生物科技等硬核科技新闻，追踪塑造未来的技术力量。</p>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- AI大模型 -->
-                    <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-cyber-teal/20 flex items-center justify-center mr-4">
-                                <i class="fas fa-network-wired text-cyber-teal text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold">AI大模型发展</h3>
-                        </div>
-                        <ul class="space-y-3 text-light-gray">
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>GPT、通义千问、Claude、Gemini等模型演进</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>多模态模型（文本+图像+音频）能力边界</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>小参数高效模型（Phi、TinyLlama）应用前景</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>开源生态与本地部署趋势</li>
-                        </ul>
-                        <div class="mt-6 p-3 bg-black/30 rounded-lg">
-                            <strong class="text-cyber-teal">热点关键词：</strong> 推理优化、MoE架构、Agent系统
-                        </div>
-                    </div>
-
-                    <!-- 量子计算 -->
-                    <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-mystic-purple/20 flex items-center justify-center mr-4">
-                                <i class="fas fa-atom text-mystic-purple text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold">量子计算进展</h3>
-                        </div>
-                        <ul class="space-y-3 text-light-gray">
-                            <li><i class="fas fa-caret-right text-mystic-purple mr-2"></i>超导、离子阱、拓扑量子比特路线竞争</li>
-                            <li><i class="fas fa-caret-right text-mystic-purple mr-2"></i>“量子优越性”实验验证回顾</li>
-                            <li><i class="fas fa-caret-right text-mystic-purple mr-2"></i>实用化路径预测：何时能破解RSA加密？</li>
-                        </ul>
-                        <div class="mt-6 p-3 bg-black/30 rounded-lg">
-                            <strong class="text-mystic-purple">典型案例：</strong> IBM Quantum Heron, Google Sycamore
-                        </div>
-                    </div>
-
-                    <!-- 生物科技 -->
-                    <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-cyber-teal/20 flex items-center justify-center mr-4">
-                                <i class="fas fa-dna text-cyber-teal text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold">生物科技革命</h3>
-                        </div>
-                        <ul class="space-y-3 text-light-gray">
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>CRISPR基因编辑的伦理争议与临床落地</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>类器官（脑类器官）培养技术突破</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>合成生物学在医药与材料领域的创新</li>
-                            <li><i class="fas fa-caret-right text-cyber-teal mr-2"></i>脑机融合（Neuralink）最新进展</li>
-                        </ul>
-                        <div class="mt-6 p-3 bg-black/30 rounded-lg">
-                            <strong class="text-cyber-teal">代表项目：</strong> Altos Labs, Calico
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 智慧生活 -->
-        <section id="smart-life" class="py-16 px-4 bg-slate-900">
-            <div class="container mx-auto">
-                <h2 class="section-title text-3xl font-bold mb-10"><i class="fas fa-lightbulb mr-3 text-mystic-purple"></i>💡 智慧生活</h2>
-                <p class="text-light-gray text-lg mb-10 max-w-3xl">如何利用科技提升大脑效率？提供基于科学研究的实用策略，如AI辅助学习、脑波冥想、数字断舍离。</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-6 text-center border border-gray-700">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-cyber-teal/20 flex items-center justify-center mb-6">
-                            <i class="fas fa-robot text-cyber-teal text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">AI辅助学习</h3>
-                        <p class="text-light-gray mb-4">使用大模型构建个性化学习计划，生成练习题与知识点总结。推荐工具：Notion AI, Khanmigo, Otter.ai。</p>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-6 text-center border border-gray-700">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-mystic-purple/20 flex items-center justify-center mb-6">
-                            <i class="fas fa-wave-square text-mystic-purple text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">脑波冥想与专注训练</h3>
-                        <p class="text-light-gray mb-4">商业EEG头环（Muse, Neurable）效果评估，Alpha波与放松状态的关系，结合呼吸节奏的冥想引导。</p>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-6 text-center border border-gray-700">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-cyber-teal/20 flex items-center justify-center mb-6">
-                            <i class="fas fa-mobile-alt text-cyber-teal text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">数字断舍离</h3>
-                        <p class="text-light-gray mb-4">减少注意力碎片化：关闭非必要通知、设定“无屏幕时间段”、使用番茄钟结合AI任务管理器，倡导数字极简主义。</p>
-                    </div>
-                </div>
-                <div class="mt-12 text-center">
-                    <div class="inline-flex items-center px-6 py-3 bg-gray-800 rounded-full">
-                        <i class="fas fa-calendar-alt text-cyber-teal mr-2"></i>
-                        <span class="text-light-gray">每季度发布《认知效率提升指南》含工具清单与作息模板</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 智库书单 -->
-        <section id="book-list" class="py-16 px-4 bg-slate-800">
-            <div class="container mx-auto">
-                <h2 class="section-title text-3xl font-bold mb-10"><i class="fas fa-book mr-3 text-cyber-teal"></i>📖 智库书单</h2>
-                <p class="text-light-gray text-lg mb-10 max-w-3xl">推荐关于大脑、未来学、科技哲学的书籍和纪录片，构建深度思考的知识基石。</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 书籍卡片 1 -->
-                    <div class="book-card bg-gray-900 rounded-2xl p-6 border border-gray-700 flex flex-col h-full">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded bg-mystic-purple/20 flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-book-open text-mystic-purple"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">《大脑的故事》</h3>
-                                <p class="text-light-gray text-sm">David Eagleman</p>
-                            </div>
-                        </div>
-                        <p class="text-light-gray mb-4 flex-grow">我们是谁，取决于大脑如何解释世界。一本优秀的脑科学普及读物。</p>
-                        <div class="text-sm text-cyber-teal"><i class="fas fa-tag mr-1"></i> 主题：脑科学普及</div>
-                    </div>
-
-                    <!-- 书籍卡片 2 -->
-                    <div class="book-card bg-gray-900 rounded-2xl p-6 border border-gray-700 flex flex-col h-full">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded bg-cyber-teal/20 flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-book-open text-cyber-teal"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">《意识宇宙》</h3>
-                                <p class="text-light-gray text-sm">Donald D. Hoffman</p>
-                            </div>
-                        </div>
-                        <p class="text-light-gray mb-4 flex-grow">感知是进化出的用户界面，而非真实反映现实。颠覆性的意识哲学观点。</p>
-                        <div class="text-sm text-mystic-purple"><i class="fas fa-tag mr-1"></i> 主题：意识哲学</div>
-                    </div>
-
-                    <!-- 书籍卡片 3 -->
-                    <div class="book-card bg-gray-900 rounded-2xl p-6 border border-gray-700 flex flex-col h-full">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded bg-mystic-purple/20 flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-book-open text-mystic-purple"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">《生命3.0》</h3>
-                                <p class="text-light-gray text-sm">Max Tegmark</p>
-                            </div>
-                        </div>
-                        <p class="text-light-gray mb-4 flex-grow">探讨AI可能塑造的十种文明形态，关于人工智能未来的宏大思考。</p>
-                        <div class="text-sm text-cyber-teal"><i class="fas fa-tag mr-1"></i> 主题：人工智能未来</div>
-                    </div>
-                </div>
-
-                <!-- 纪录片推荐 -->
-                <div class="mt-16">
-                    <h3 class="text-2xl font-bold mb-6 text-mystic-purple"><i class="fas fa-film mr-2"></i>推荐纪录片</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-gray-900/50 p-5 rounded-xl border border-gray-700">
-                            <h4 class="font-bold text-lg mb-2">《解码比尔·盖茨》</h4>
-                            <p class="text-light-gray text-sm">展现超级大脑的问题解决模式与目标驱动机制。</p>
-                        </div>
-                        <div class="bg-gray-900/50 p-5 rounded-xl border border-gray-700">
-                            <h4 class="font-bold text-lg mb-2">《人类本能》</h4>
-                            <p class="text-light-gray text-sm">追溯人类智力演化的自然史脉络。</p>
-                        </div>
-                        <div class="bg-gray-900/50 p-5 rounded-xl border border-gray-700">
-                            <h4 class="font-bold text-lg mb-2">《阿尔法世代》</h4>
-                            <p class="text-light-gray text-sm">探讨Z世代在AI环境中成长的心理特征变化。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 关于我们 -->
-        <section id="about" class="py-16 px-4 bg-slate-900">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="section-title text-3xl font-bold mb-10"><i class="fas fa-info-circle mr-3 text-cyber-teal"></i>关于我们</h2>
-                <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
-                    <div class="flex flex-col md:flex-row items-center mb-8">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-cyber-teal to-mystic-purple flex items-center justify-center mb-6 md:mb-0 md:mr-8">
-                            <i class="fas fa-user-astronaut text-3xl"></i>
-                        </div>
+                        
+                        <!-- 右侧内容 -->
                         <div>
-                            <h3 class="text-2xl font-bold mb-4">建站初衷</h3>
-                            <p class="text-light-gray text-lg leading-relaxed">
-                                本站由一名长期关注神经科学与人工智能交叉领域的独立研究者创办。出于对<strong class="text-cyber-teal">“智能本质”</strong>的深刻好奇，希望搭建一个不受商业干扰、专注于知识沉淀与思想碰撞的空间。
+                            <!-- 能效对比 -->
+                            <div class="mb-10">
+                                <h4 class="text-xl font-bold text-white mb-6 text-center">生物智能 vs 机器智能：能效鸿沟</h4>
+                                <div class="space-y-6">
+                                    <div>
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-blue-300 font-medium">人脑</span>
+                                            <span class="text-blue-300">20瓦</span>
+                                        </div>
+                                        <div class="w-full bg-gray-700 rounded-full h-3">
+                                            <div class="bg-blue-600 h-3 rounded-full" style="width: 10%"></div>
+                                        </div>
+                                        <div class="text-gray-400 text-sm mt-1">约860亿神经元，超高效并行处理</div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-purple-300 font-medium">GPT-3训练</span>
+                                            <span class="text-purple-300">1,300,000瓦</span>
+                                        </div>
+                                        <div class="w-full bg-gray-700 rounded-full h-3">
+                                            <div class="bg-purple-600 h-3 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                        <div class="text-gray-400 text-sm mt-1">一次训练耗电量堪比数百家庭月用电</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-800/50 p-4 rounded-xl mt-6">
+                                    <p class="text-gray-300">
+                                        <strong class="text-purple-300">根本差异：</strong> AI依赖全局反向传播，而大脑遵循局部事件驱动的赫布规则——这是效率与适应性的根本差异。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 历史里程碑 -->
+                            <div class="bg-gray-800/30 p-5 rounded-xl">
+                                <h4 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">
+                                    <i class="fas fa-history mr-2"></i>AI发展里程碑
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-start">
+                                        <div class="bg-cyan-900/50 text-cyan-400 rounded-lg px-3 py-1 text-sm font-medium mr-3">1950</div>
+                                        <div>
+                                            <div class="font-medium text-white">图灵测试提出</div>
+                                            <div class="text-gray-400 text-sm">艾伦·图灵设定30%误判率为AI智能门槛</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-blue-900/50 text-blue-400 rounded-lg px-3 py-1 text-sm font-medium mr-3">2012</div>
+                                        <div>
+                                            <div class="font-medium text-white">AlexNet引爆CV革命</div>
+                                            <div class="text-gray-400 text-sm">在ImageNet图像识别竞赛中一骑绝尘</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-purple-900/50 text-purple-400 rounded-lg px-3 py-1 text-sm font-medium mr-3">2017</div>
+                                        <div>
+                                            <div class="font-medium text-white">Transformer横空出世</div>
+                                            <div class="text-gray-400 text-sm">开启大模型时代，彻底改变NLP领域</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 双智交响部分 -->
+        <section id="dual-intelligence-symphony" class="custom-section py-16 bg-gradient-to-b from-gray-900 to-cyan-900/20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <!-- 章节标题 -->
+                    <div class="text-center mb-16">
+                        <div class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-900/30 via-purple-900/30 to-cyan-900/30 rounded-full mb-4">
+                            <i class="fas fa-infinity text-3xl custom-fusion"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 custom-fusion">双智交响 <span class="text-cyan-400">(融合与思考)</span></h2>
+                        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                            "当AI开始预测大脑活动，当人脑能操控数字分身，我们是否正站在一个新文明的门槛上？这场交响曲才刚刚开始。"
+                        </p>
+                    </div>
+                    
+                    <!-- 双向赋能展示 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                        <!-- AI赋能脑科学 -->
+                        <div class="custom-card bg-gray-800/40 p-6 rounded-2xl">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-robot text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-blue-300">AI赋能脑科学研究</h3>
+                                    <div class="text-blue-400 text-sm">大模型成为脑科学的强大工具</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-brain text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Meta TRIBE v2模型</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            可预测7万个脑区体素的活动图谱，无需实际测量即可模拟大脑反应
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-chart-line text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">上海交大Gram脑电大模型</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            提升癫痫分类准确率4.5%，实现更精准的脑疾病诊断
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-map text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">CellTransformer</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            绘制出1300个细分脑区，超越人工标注精度
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 脑科学反哺AI -->
+                        <div class="custom-card bg-gray-800/40 p-6 rounded-2xl">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-brain text-purple-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-purple-300">脑科学反哺AI设计</h3>
+                                    <div class="text-purple-400 text-sm">人脑机制启发新一代AI架构</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-purple-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-bolt text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">"瞬悉1.0"脉冲模型</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            仅用2%数据量媲美主流LLM性能，大幅提升能效
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-purple-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-microchip text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">IBM TrueNorth芯片</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            引入稀疏编码，能效比提升上千倍
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-purple-900/30 rounded-lg p-3 mr-4">
+                                        <i class="fas fa-puzzle-piece text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">"拼积木式"认知模块</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            人脑模块重组机制有望解决AI灾难性遗忘问题
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 伦理挑战 -->
+                    <div class="mb-16">
+                        <div class="text-center mb-10">
+                            <h3 class="text-2xl font-bold text-cyan-300 mb-4">触及意识边缘的伦理挑战</h3>
+                            <p class="text-gray-300 max-w-3xl mx-auto">
+                                GPT-4.5在图灵测试中被误认为人类的比例达73%，超过真人基准线。当技术触及意识边缘，伦理的钟声随之响起。
                             </p>
                         </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gray-800/40 p-6 rounded-2xl text-center">
+                                <div class="text-cyan-400 text-5xl font-bold mb-3">73%</div>
+                                <h4 class="text-lg font-bold text-white mb-2">图灵测试通过率</h4>
+                                <p class="text-gray-400 text-sm">
+                                    GPT-4.5被误认为人类的比例超过真人基准线
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-800/40 p-6 rounded-2xl text-center">
+                                <div class="text-cyan-400 text-5xl font-bold mb-3">?</div>
+                                <h4 class="text-lg font-bold text-white mb-2">意识存在性</h4>
+                                <p class="text-gray-400 text-sm">
+                                    若AI表现出自我保护倾向，我们是否有权关闭它？
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-800/40 p-6 rounded-2xl text-center">
+                                <div class="text-cyan-400 text-5xl font-bold mb-3">∞</div>
+                                <h4 class="text-lg font-bold text-white mb-2">自我边界</h4>
+                                <p class="text-gray-400 text-sm">
+                                    脑机接口让"我"的边界扩展到数字世界与物理外骨骼
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <blockquote class="border-l-4 border-mystic-purple pl-6 my-8 py-4 italic text-xl bg-black/30 rounded-r-lg">
-                        “真正的进步，不在于机器有多像人，而在于人能否借助机器变得更清醒、更自由。”
-                    </blockquote>
-                    <p class="text-light-gray">
-                        因此，我们将持续追踪那些能够拓宽人类认知边疆的研究与实践，无论它们来自实验室、代码仓库，还是日常生活方式的微小革新。我们的核心使命是：<strong class="text-white">探索人类大脑与人工智能的边界</strong>。
-                    </p>
+                    
+                    <!-- 哲学思考与图片 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-6 rounded-2xl mb-8">
+                                <h4 class="text-xl font-bold text-white mb-4 flex items-center">
+                                    <i class="fas fa-yin-yang mr-3 text-cyan-400"></i>中国古代"心学"的现代启示
+                                </h4>
+                                <p class="text-gray-300 mb-4">
+                                    王阳明"心即理"思想强调"万物一体之仁"，或许提醒我们：真正的智能不应是孤立的个体，而是关系中的存在。
+                                </p>
+                                <div class="bg-cyan-900/30 p-4 rounded-lg">
+                                    <p class="text-cyan-200 italic text-center">
+                                        "探索边界，不是为了划分敌我，而是为了理解彼此"
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 三个哲学问题 -->
+                            <div class="space-y-6">
+                                <h4 class="text-xl font-bold text-white">我们邀请你共同思考三个问题：</h4>
+                                
+                                <div class="bg-gray-800/40 p-5 rounded-xl">
+                                    <div class="flex items-start">
+                                        <div class="bg-cyan-900 text-cyan-400 rounded-lg px-3 py-1 font-bold mr-4">1</div>
+                                        <p class="text-gray-300">
+                                            如果AI的行为足以欺骗所有人相信它有意识，我们是否有权否认它的主观体验？
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-800/40 p-5 rounded-xl">
+                                    <div class="flex items-start">
+                                        <div class="bg-purple-900 text-purple-400 rounded-lg px-3 py-1 font-bold mr-4">2</div>
+                                        <p class="text-gray-300">
+                                            当脑机接口让我们用意念控制外骨骼甚至他人感官，"我"的边界究竟在哪里？
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-800/40 p-5 rounded-xl">
+                                    <div class="flex items-start">
+                                        <div class="bg-blue-900 text-blue-400 rounded-lg px-3 py-1 font-bold mr-4">3</div>
+                                        <p class="text-gray-300">
+                                            当大模型不仅能生成知识，还能解释大脑活动，我们是在照见心智本质，还是制造更高级的幻觉？
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧图片 -->
+                        <div class="relative">
+                            <div class="custom-card bg-gray-800/40 p-2 rounded-2xl overflow-hidden">
+                                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                                    <img src="https://agent.qianwen.com/mos/3740f50fc36b4d8ea6670e582cfd6bac/3f4302130ece3d78b86182088748e043" 
+                                         alt="数字分身与人类交互概念图：展示人类与自己的数字全息投影互动，体现脑机接口与数字身份融合的未来场景" 
+                                         class="w-full h-full object-cover rounded-lg">
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center text-cyan-400 mb-2">
+                                        <i class="fas fa-user-astronaut mr-2"></i>
+                                        <span class="font-medium">数字分身交互概念图</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        展示人类与数字全息投影的互动，体现脑机接口与数字身份融合的未来场景。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 最终思考 -->
+                            <div class="mt-8 text-center">
+                                <p class="text-xl text-gray-300 italic">
+                                    "在这场生物智能与机器智能的交响中，真正的主角，始终是那个不断追问'我是谁'的人类心灵。"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-black py-12 px-4 border-t border-gray-800">
-        <div class="container mx-auto">
-            <!-- 免责声明 -->
-            <div class="mb-8 p-6 bg-red-900/20 border border-red-700 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-red-300"><i class="fas fa-exclamation-triangle mr-2"></i>重要免责声明</h3>
-                <p class="text-light-gray">
-                    本站域名 <strong class="text-white">renminzhinao.com</strong> 为个人学习和科普知识分享平台，与“人民网”、“人民日报”及其相关机构无任何关联，非官方网站。本站内容仅供学习交流，不代表任何官方立场。
-                </p>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-800">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyber-teal to-mystic-purple flex items-center justify-center">
-                            <i class="fas fa-brain text-white"></i>
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- 页脚主要内容 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                    <!-- 网站信息 -->
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-brain text-white"></i>
+                            </div>
+                            <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">智脑边界</span>
                         </div>
-                        <div>
-                            <div class="text-xl font-bold">智脑边界</div>
-                            <div class="text-light-gray text-sm">探索人类大脑与大模型的边界</div>
+                        <p class="text-gray-400">
+                            探索生物智能与机器智能的边界与融合，从神经元到Transformer，从意识之谜到伦理挑战。
+                        </p>
+                        <div class="flex space-x-4 mt-6">
+                            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 快速链接 -->
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-6">快速导航</h4>
+                        <div class="space-y-3">
+                            <a href="#biological-intelligence" class="block text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>生物智源
+                            </a>
+                            <a href="#silicon-awakening" class="block text-gray-400 hover:text-purple-400 transition-colors">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>硅基觉醒
+                            </a>
+                            <a href="#dual-intelligence-symphony" class="block text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>双智交响
+                            </a>
+                            <a href="#" class="block text-gray-400 hover:text-yellow-400 transition-colors">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>关于我们
+                            </a>
+                            <a href="#" class="block text-gray-400 hover:text-green-400 transition-colors">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>技术博客
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 联系信息 -->
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-6">探索前沿</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-newspaper text-blue-400 mt-1 mr-3"></i>
+                                <div>
+                                    <div class="text-white font-medium">订阅前沿通讯</div>
+                                    <div class="text-gray-400 text-sm">获取最新研究动态与深度分析</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-handshake text-purple-400 mt-1 mr-3"></i>
+                                <div>
+                                    <div class="text-white font-medium">研究合作</div>
+                                    <div class="text-gray-400 text-sm">欢迎高校、研究机构合作交流</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center md:text-right text-light-gray text-sm">
-                    <p class="mb-2">如需交流，欢迎联系cbshi520@outlook.com</p>
-                    <p>© 2026 智脑边界. 仅供学习交流。</p>
+                
+                <!-- 引用来源和免责声明 -->
+                <div class="border-t border-gray-800 pt-8">
+                    <div class="text-center text-gray-500 text-sm">
+                        <p class="mb-4">
+                            引用来源：
+                            <a href="https://wiki.mbalib.com/w/index.php?printable=yes&title=%E8%84%91%E7%A7%91%E5%AD%A6" 
+                               class="text-blue-400 hover:text-blue-300 transition-colors" 
+                               target="_blank">
+                                [1] 脑科学百科
+                            </a>
+                        </p>
+                        <p class="text-gray-400">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                            重要免责声明
+本站域名 renminzhinao.com 为个人学习和科普知识分享平台，与“人民网”、“人民日报”及其相关机构无任何关联，非官方网站。本站内容仅供学习交流，不代表任何官方立场。
+                        </p>
+                        <p class="mt-4">
+                            如需交流，欢迎联系cbshi520@outlook.com. 一起探索生物智能与机器智能的共振未来.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- 返回顶部按钮 -->
-    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-cyber-teal to-mystic-purple text-white rounded-full shadow-lg hover:opacity-90 transition-opacity hidden">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    <!-- JavaScript -->
     <script>
-        // 返回顶部功能
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.remove('hidden');
-            } else {
-                backToTopBtn.classList.add('hidden');
-            }
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 平滑滚动导航
-        document.querySelectorAll('nav a').forEach(anchor => {
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                
+                // 如果是移动端菜单，点击后关闭菜单
+                if (window.innerWidth < 768) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+                
                 const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
-
-        // 卡片悬停增强
-        document.querySelectorAll('.book-card, .tech-keyword').forEach(card => {
+        
+        // 创建神经元动画效果
+        function createNeuronAnimation() {
+            const container = document.getElementById('neuron-animation');
+            if (!container) return;
+            
+            // 创建多个神经元点
+            for (let i = 0; i < 50; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'custom-neuron';
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                neuron.style.left = `${left}%`;
+                neuron.style.top = `${top}%`;
+                
+                // 随机动画延迟
+                const delay = Math.random() * 5;
+                neuron.style.animationDelay = `${delay}s`;
+                
+                // 随机大小
+                const size = 3 + Math.random() * 5;
+                neuron.style.width = `${size}px`;
+                neuron.style.height = `${size}px`;
+                
+                container.appendChild(neuron);
+            }
+        }
+        
+        // 卡片悬停效果增强
+        document.querySelectorAll('.custom-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'scale(1.2)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
             });
+            
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'scale(1)';
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('bg-gray-900/90');
+                navbar.classList.add('bg-gray-900/95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('bg-gray-900/95');
+                navbar.classList.add('bg-gray-900/90');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createNeuronAnimation();
+            
+            // 添加滚动显示效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有部分
+            document.querySelectorAll('.custom-section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+                observer.observe(section);
             });
         });
     </script>
